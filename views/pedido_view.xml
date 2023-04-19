@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="app_pedidos.pedido_form">
+            <field name="name">Formulario pedido</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="usuario" />
+                            <field name="cliente" />
+                            <field name="fechaCreacion" />
+                        </group>
+                        <group>
+                            <field name="fechaEntrega" />
+                            <field name="unidad" />
+                            <field name="estado" />
+                            <field name="muelle" />
+                            <field name="active" invisible="True"/>
+                        </group>
+                        <group>
+                            <field name="lineas">
+                                <tree>
+                                    <field name="cantidad" />
+                                    <field name="tipoPaquete" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.pedido_kanban">
+            <field name="name">Kanban de Pedidos</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by ="cliente" class="o_res_partner_kanban" decoration-danger="active == True">
+                    <field name="cliente"/>
+                    <field name="fechaEntrega" />
+                    <field name="estado" />
+                    <field name="muelle" />
+                    <field name="active" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <div>
+                                        <strong>
+                                            <div class="oe_kanban_record_title"><field name="fechaEntrega" /></div>
+                                        </strong>
+                                        <div><field name="estado" /></div>   
+                                        <div><field name="muelle" /></div> 
+                                        <div><field name = "active" invisible="True"/></div>                               
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.pedido_model_calendar">
+            <field name="name">Calendario pedidos</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <calendar date_start="fechaEntrega" color="cliente" mode="month" quick_add="false">
+                    <field name="cliente" />
+                    <field name="estado"/>
+                    <field name="muelle"/>
+                    <field name="fechaEntrega"/>
+                </calendar>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.pedido_model_graph">
+            <field name="name">Grafico pedidos</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <graph type="pie">
+                    <field name="cliente"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.pedido_list">
+            <field name="name">Lista pedidos</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="usuario" />
+                    <field name="cliente" />
+                    <field name="fechaEntrega" />
+                    <field name="unidad" />
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="app_pedidos.action_window_pedido_list">
+            <field name="name">Lista pedidos</field>
+            <field name="res_model">app_pedidos.pedido</field>
+            <field name="view_mode">calendar,graph,kanban,tree,form</field>
+        </record>
+    </data>
+</odoo>

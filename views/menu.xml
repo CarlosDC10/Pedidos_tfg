@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem name="Pedidos" id="app_pedidos.menu_root"  web_icon="app_pedidos,static/description/papas.jpg" 
+        groups="pedidos_grupo_empleado,pedidos_grupo_encargado,pedidos_grupo_admin"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Cliente" id="app_pedidos.menu_cliente" parent="app_pedidos.menu_root" 
+        groups="pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Pedido" id="app_pedidos.menu_pedido" parent="app_pedidos.menu_root" 
+        groups="pedidos_grupo_empleado,pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Linea Pedido" id="app_pedidos.menu_linea_pedido" parent="app_pedidos.menu_root" 
+        groups="pedidos_grupo_empleado,pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Linea Preparada" id="app_pedidos.menu_linea_preparada" parent="app_pedidos.menu_root" 
+        groups="pedidos_grupo_admin"/>
+        <menuitem name="Tipo paquete" id="app_pedidos.menu_tipo_paquete" parent="app_pedidos.menu_root" 
+        groups="pedidos_grupo_admin"/>
+
+
+        <!-- actions -->
+
+        <menuitem name="Lista Clientes" id="app_pedidos.menu_clientes_list"
+            parent="app_pedidos.menu_cliente"
+            action="app_pedidos.action_window_clientes_list" 
+            groups="pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Lista Pedidos" id="app_pedidos.menu_pedidos_list"
+            parent="app_pedidos.menu_pedido"
+            action="app_pedidos.action_window_pedido_list" 
+            groups="pedidos_grupo_empleado,pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Lista linea pedidos" id="app_pedidos.menu_linea_pedidos_list"
+            parent="app_pedidos.menu_linea_pedido"
+            action="app_pedidos.action_window_linea_pedido_list" 
+            groups="pedidos_grupo_empleado,pedidos_grupo_encargado,pedidos_grupo_admin"/>
+        <menuitem name="Lista linea preparada" id="app_pedidos.menu_linea_preparada_list"
+            parent="app_pedidos.menu_linea_preparada"
+            action="app_pedidos.action_window_linea_preparada_list" 
+            groups="pedidos_grupo_admin"/>
+        <menuitem name="Lista tipo paquete" id="app_pedidos.menu_tipos_paquetes_list"
+            parent="app_pedidos.menu_tipo_paquete"
+            action="app_pedidos.action_window_tipo_paquete_list" 
+            groups="pedidos_grupo_admin"/>
+    </data>
+</odoo>

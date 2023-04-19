@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="app_pedidos.tipo_paquete_form">
+            <field name="name">Formulario Tipo paquete</field>
+            <field name="model">app_pedidos.tipo_paquete</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="gramaje" />
+                            <field name="paqueteCajas" />
+                            <field name="cajasPalet" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.tipo_paquete_list">
+            <field name="name">Lista tipo pquetes</field>
+            <field name="model">app_pedidos.tipo_paquete</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="gramaje" />
+                    <field name="paqueteCajas" />
+                    <field name="cajasPalet" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="app_pedidos.action_window_tipo_paquete_list">
+            <field name="name">Lista tipos paquete</field>
+            <field name="res_model">app_pedidos.tipo_paquete</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

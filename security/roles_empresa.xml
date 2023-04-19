@@ -1,0 +1,20 @@
+<odoo>
+    <record id="rol_empresa" model="ir.module.category">
+        <field name="name">Pedidos</field>
+    </record>
+    <record id="pedidos_grupo_empleado" model="res.groups">
+        <field name="name">Empleado</field>
+        <field name="category_id" ref="rol_empresa" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+    <record id="pedidos_grupo_encargado" model="res.groups">
+        <field name="name">Encargado</field>
+        <field name="category_id" ref="rol_empresa" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+    <record id="pedidos_grupo_admin" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="rol_empresa" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+</odoo>

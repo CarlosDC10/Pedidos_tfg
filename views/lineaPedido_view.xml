@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="app_pedidos.linea_pedido_form">
+            <field name="name">Formulario linea pedido</field>
+            <field name="model">app_pedidos.linea_pedido</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="cantidad" />
+                            <field name="tipoPaquete" />
+                            <field name="active" invisible="True"/>
+                            <field name="lineasPreparadas">
+                                <tree>
+                                    <field name="lote" />
+                                    <field name="cantidad" />
+                                    <field name="tipoPaquete" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.linea_pedido_kanban">
+            <field name="name">Kanban de linea de pedidos</field>
+            <field name="model">app_pedidos.linea_pedido</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by ="pedido" class="o_res_partner_kanban" >
+                    <field name="pedido"/>
+                    <field name="tipoPaquete" />
+                    <field name="cantidad" />
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <div>
+                                        <strong>
+                                            <div class="oe_kanban_record_title"> <field  name="cantidad"/> - <field name="tipoPaquete" /></div>
+                                        </strong>
+                                        <div><field name = "active" invisible="True"/></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.linea_pedido_list">
+            <field name="name">Lista lineas pedido</field>
+            <field name="model">app_pedidos.linea_pedido</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pedido" />
+                    <field name="cantidad" />
+                    <field name="tipoPaquete" />
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="app_pedidos.action_window_linea_pedido_list">
+            <field name="name">Lista lineas pedido</field>
+            <field name="res_model">app_pedidos.linea_pedido</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+    </data>
+</odoo>

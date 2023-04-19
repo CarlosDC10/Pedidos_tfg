@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="app_pedidos.linea_preparada_form">
+            <field name="name">Formulario linea preparada</field>
+            <field name="model">app_pedidos.linea_preparada</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="anyadirUno" type="object" string="Añadir uno" class="oe_highlight"/>
+                        <button name="restarUno" type="object" string="Restar uno" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="lote" />
+                            <field name="cantidad" />
+                            <field name="tipoPaquete" readonly="True" />
+                            <field name = "active" invisible="True"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.linea_preparada_list">
+            <field name="name">Lista lineas preparada</field>
+            <field name="model">app_pedidos.linea_preparada</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lineaPedido" />
+                    <field name="lote" />
+                    <field name="cantidad" />
+                    <field name="tipoPaquete" />
+                    <field name = "active"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="app_pedidos.action_window_linea_preparada_list">
+            <field name="name">Lista lineas preparada</field>
+            <field name="res_model">app_pedidos.linea_preparada</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

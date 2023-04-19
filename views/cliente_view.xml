@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="app_pedidos.cliente_model_form">
+            <field name="name">Formulario clientes</field>
+            <field name="model">app_pedidos.cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nombre" />
+                            <field name="direccion" />
+                        </group>
+                        <group>
+                            <field name="correo" />
+                            <field name="telefono" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.cliente_model_graph">
+            <field name="name">Grafico clientes</field>
+            <field name="model">app_pedidos.cliente</field>
+            <field name="arch" type="xml">
+                <graph type="pie">
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="app_pedidos.category_model_list">
+            <field name="name">Lista clientes</field>
+            <field name="model">app_pedidos.cliente</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre" />
+                    <field name="direccion" />
+                    <field name="correo" />
+                    <field name="telefono" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="app_pedidos.action_window_clientes_list">
+            <field name="name">Lista clientes</field>
+            <field name="res_model">app_pedidos.cliente</field>
+            <field name="view_mode">tree,graph,form</field>
+        </record>
+    </data>
+</odoo>
