@@ -8,7 +8,7 @@ class PedidoModel(models.Model):
     _rec_name = "customRecName"
 
     usuario = fields.Char(string="Creado por:",required=False, default = lambda self: self.env.user.name)
-    cliente = fields.Many2one(comodel_name="app_pedidos.cliente",string="Cliente:")
+    cliente = fields.Many2one(comodel_name="app_pedidos.cliente",string="Cliente:", required=True)
     unidad = fields.Selection(string="Unidad:",selection=[('C','Cajas'),('P','Palet'),('B','Paquete')], default="P")
     fechaEntrega = fields.Date(string="Fecha entrega:", help="Fecha en la que se tiene que entregar el pedido", required=True)
     fechaCreacion = fields.Date(string="Fecha de creación:", help="Fecha en la que se creó el pedido",default=lambda self: datetime.datetime.now())
@@ -20,19 +20,23 @@ class PedidoModel(models.Model):
 
     @api.onchange("estado")
     def controlEstado(self):
-        resu = True
-        if self.estado == 'E' or self.estado == 'C':
+        if self.estado == 'E':
+            self.active = False
+        elif self.estado == 'C':
             for linea in self.lineas:
-                if linea.active == True:
-                    resu = True
+                if linea.completada == False:
                     raise ValidationError("Aun hay lineas por terminar")
-                elif linea.active == False:
-                    resu = False
-            self.active = resu
-        else:
             self.active = True
 
     @api.depends('cliente', 'fechaEntrega')
     def setRecName(self):
         for rec in self: 
             rec.customRecName = str(rec.cliente.nombre) +" ("+str(rec.fechaEntrega)+")"
+
+    def cambiarEstado(self):
+        if self.estado == 'P':
+            self.estado = 'C'
+            self.controlEstado()
+        elif self.estado == 'C':
+            self.estado = 'E'
+            self.controlEstado()

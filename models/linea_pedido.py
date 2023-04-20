@@ -10,7 +10,7 @@ class LineaPedidoModel(models.Model):
     tipoPaquete = fields.Many2one(comodel_name="app_pedidos.tipo_paquete",string="Tipo paquete:")
     cantidad = fields.Integer(string="Cantidad: ",help="Cuantas unidades del tipo de paquete?")
     lineasPreparadas = fields.One2many(comodel_name="app_pedidos.linea_preparada",inverse_name="lineaPedido",string="Lineas preparadas:")
-    active = fields.Boolean(string="Esta por completar?", default=True)
+    completada = fields.Boolean(string="Esta por completar?", default=True)
 
     @api.onchange('lineasPreparadas')
     def lineaAcabada(self):
@@ -18,9 +18,9 @@ class LineaPedidoModel(models.Model):
         for linea in self.lineasPreparadas:
             acum = acum + linea.cantidad
         if acum == self.cantidad:
-            self.active = False
+            self.completada = False
         else:
             if acum > self.cantidad:
                 raise ValidationError("Hay un error en las lineas de pedido")
             else:
-                self.active = True
+                self.completada = True

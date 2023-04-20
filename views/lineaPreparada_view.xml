@@ -14,7 +14,7 @@
                             <field name="lote" />
                             <field name="cantidad" />
                             <field name="tipoPaquete" readonly="True" />
-                            <field name = "active" invisible="True"/>
+                            <field name = "completada"/>
                         </group>
                     </sheet>
                 </form>
@@ -29,7 +29,7 @@
                     <field name="lote" />
                     <field name="cantidad" />
                     <field name="tipoPaquete" />
-                    <field name = "active"/>
+                    <field name="completada"/>
                 </tree>
             </field>
         </record>
