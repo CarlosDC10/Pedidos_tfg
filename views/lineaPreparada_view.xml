@@ -5,10 +5,6 @@
             <field name="model">app_pedidos.linea_preparada</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button name="anyadirUno" type="object" string="Añadir uno" class="oe_highlight"/>
-                        <button name="restarUno" type="object" string="Restar uno" class="oe_highlight"/>
-                    </header>
                     <sheet>
                         <group>
                             <field name="lote" />
