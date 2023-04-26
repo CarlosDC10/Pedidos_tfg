@@ -17,16 +17,20 @@ class PedidoModel(models.Model):
     active = fields.Boolean(string="Esta activo?",default=True)
     muelle = fields.Selection(string="Muelle:",selection=[('P','Puerta principal'),('T','Puerta trasera')], default="P")
     customRecName = fields.Char(string="(Invisible) recname custom",compute = "setRecName", store = True)
+    hoy = fields.Date(string="Dia de hoy:",default=lambda self: datetime.datetime.now())
 
     @api.onchange("estado")
     def controlEstado(self):
-        if self.estado == 'E':
-            self.active = False
-        elif self.estado == 'C':
+        if self.estado == 'C':
             for linea in self.lineas:
                 if linea.completada == False:
                     raise ValidationError("Aun hay lineas por terminar")
             self.active = True
+
+    @api.onchange("hoy")
+    def cambiarActive(self):
+        if self.fechaEntrega < self.hoy:
+            self.active = False
 
     @api.depends('cliente', 'fechaEntrega')
     def setRecName(self):

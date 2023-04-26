@@ -8,7 +8,7 @@
                     <sheet>
                         <group>
                             <field name="lote" />
-                            <field name="cantidad" />
+                            <field name="cantidad" widget="numeric_step" options="{'step': 1, 'min': 0}"/> <field name="unidadPedido" readonly="True"/>
                             <field name="tipoPaquete" readonly="True" />
                             <field name = "completada"/>
                         </group>
@@ -24,6 +24,7 @@
                     <field name="lineaPedido" />
                     <field name="lote" />
                     <field name="cantidad" />
+                    <field name="unidadPedido"/>
                     <field name="tipoPaquete" />
                     <field name="completada"/>
                 </tree>

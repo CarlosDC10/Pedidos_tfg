@@ -7,13 +7,14 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="cantidad" />
+                            <field name="cantidad" widget="numeric_step" options="{'step': 1, 'min': 0}" /> <field name="unidadPedido" readonly="True"/>
                             <field name="tipoPaquete" />
-                            <field name="completada" invisible="True"/>
+                            <field name="completada"/>
                             <field name="lineasPreparadas">
                                 <tree>
                                     <field name="lote" />
                                     <field name="cantidad" />
+                                    <field name="unidadPedido"/>
                                     <field name="tipoPaquete" />
                                 </tree>
                             </field>
@@ -27,17 +28,21 @@
             <field name="model">app_pedidos.linea_pedido</field>
             <field name="arch" type="xml">
                 <kanban default_group_by ="pedido" class="o_res_partner_kanban" >
+                    <field name="color"/>
                     <field name="pedido"/>
                     <field name="tipoPaquete" />
                     <field name="cantidad" />
                     <field name="completada"/>
+                    <field name="unidadPedido"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click">
+                            <div 
+                            t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click"
+                            >
                                 <div class="oe_kanban_details">
                                     <div>
                                         <strong>
-                                            <div class="oe_kanban_record_title"> <field  name="cantidad"/> - <field name="tipoPaquete" /></div>
+                                            <div class="oe_kanban_record_title"> <field  name="cantidad"/> <field name="unidadPedido"/> - <field name="tipoPaquete" /></div>
                                         </strong>
                                         <div><field name = "completada" invisible="True"/></div> 
                                     </div>
@@ -55,6 +60,7 @@
                 <tree>
                     <field name="pedido" />
                     <field name="cantidad" />
+                    <field name="unidadPedido"/>
                     <field name="tipoPaquete" />
                     <field name="completada"/>
                 </tree>
@@ -64,6 +70,7 @@
             <field name="name">Lista lineas pedido</field>
             <field name="res_model">app_pedidos.linea_pedido</field>
             <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('completada', '=', False)]</field>
         </record>
     </data>
 </odoo>
