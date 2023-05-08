@@ -3,7 +3,7 @@ from odoo.http import json,request
 
 
 class AppPedidos(http.Controller):
-    #Tipo de paquete
+     #Tipo de paquete
     @http.route(['/app_pedidos/getTipoPaquete','/app_pedidos/getTipoPaquete<int:TipoPaqid>'], auth='public', type="http")
     def getTipoPaquete(self,TipoPaqid=None, **kw):
         if TipoPaqid:
@@ -14,7 +14,7 @@ class AppPedidos(http.Controller):
         data = {"status":200, "data": tipodata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 
-    @http.route('/app_pedidos/addTipoPaquete', auth='public', type="json",method="POST")
+    @http.route('/app_pedidos/addTipoPaquete', auth='public', type="json",methods=["POST"])
     def addTipoPaquete(self, **kw):
         response = request.jsonrequest
         try:
@@ -31,7 +31,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/updateTipoPaquete', auth='public', type="json",method="PUT")
+    @http.route('/app_pedidos/updateTipoPaquete', auth='public', type="json",methods=["PUT"])
     def updateTipoPaquete(self, **kw):
         response = request.jsonrequest
         try:
@@ -49,7 +49,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/deleteTipoPaquete', auth='public', type="json",method="DELETE")
+    @http.route('/app_pedidos/deleteTipoPaquete', auth='public', type="json",methods=["DELETE"])
     def deleteTipoPaquete(self, **kw):
         response = request.jsonrequest
         try:
@@ -77,7 +77,7 @@ class AppPedidos(http.Controller):
         data = {"status":200, "data": clientedata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 
-    @http.route('/app_pedidos/addCliente', auth='public', type="json",method="POST")
+    @http.route('/app_pedidos/addCliente', auth='public', type="json",methods=["POST"])
     def addCliente(self, **kw):
         response = request.jsonrequest
         try:
@@ -94,7 +94,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/updateCliente', auth='public', type="json",method="PUT")
+    @http.route('/app_pedidos/updateCliente', auth='public', type="json",methods=["PUT"])
     def updateCliente(self, **kw):
         response = request.jsonrequest
         try:
@@ -112,7 +112,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/deleteCliente', auth='public', type="json",method="DELETE")
+    @http.route('/app_pedidos/deleteCliente', auth='public', type="json",methods=["DELETE"])
     def deleteCliente(self, **kw):
         response = request.jsonrequest
         try:
@@ -140,7 +140,7 @@ class AppPedidos(http.Controller):
         data = {"status":200, "data": pedidodata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 
-    @http.route('/app_pedidos/addPedido', auth='public', type="json",method="POST")
+    @http.route('/app_pedidos/addPedido', auth='public', type="json",methods=["POST"])
     def addPedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -157,7 +157,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/updatePedido', auth='public', type="json",method="PUT")
+    @http.route('/app_pedidos/updatePedido', auth='public', type="json",methods=["PUT"])
     def updatePedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -175,7 +175,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/deletePedido', auth='public', type="json",method="DELETE")
+    @http.route('/app_pedidos/deletePedido', auth='public', type="json",methods=["DELETE"])
     def deletePedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -203,7 +203,7 @@ class AppPedidos(http.Controller):
         data = {"status":200, "data": lineaPeddata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 
-    @http.route('/app_pedidos/addLineaPedido', auth='public', type="json",method="POST")
+    @http.route('/app_pedidos/addLineaPedido', auth='public', type="json",methods=["POST"])
     def addLineaPedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -220,7 +220,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/updateLineaPedido', auth='public', type="json",method="PUT")
+    @http.route('/app_pedidos/updateLineaPedido', auth='public', type="json",methods=["PUT"])
     def updateLineaPedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -238,7 +238,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/deleteLineaPedido', auth='public', type="json",method="DELETE")
+    @http.route('/app_pedidos/deleteLineaPedido', auth='public', type="json",methods=["DELETE"])
     def deleteLineaPedido(self, **kw):
         response = request.jsonrequest
         try:
@@ -266,7 +266,7 @@ class AppPedidos(http.Controller):
         data = {"status":200, "data": lineaPrepdata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 
-    @http.route('/app_pedidos/addLineaPreparada', auth='public', type="json",method="POST")
+    @http.route('/app_pedidos/addLineaPreparada', auth='public', type="json",methods=["POST"])
     def addLineaPreparada(self, **kw):
         response = request.jsonrequest
         try:
@@ -283,7 +283,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/updateLineaPreparada', auth='public', type="json",method="PUT")
+    @http.route('/app_pedidos/updateLineaPreparada', auth='public', type="json",methods=["PUT"])
     def updateLineaPreparada(self, **kw):
         response = request.jsonrequest
         try:
@@ -301,7 +301,7 @@ class AppPedidos(http.Controller):
             }
             return data
 
-    @http.route('/app_pedidos/deleteLineaPreparada', auth='public', type="json",method="DELETE")
+    @http.route('/app_pedidos/deleteLineaPreparada', auth='public', type="json",methods=["DELETE"])
     def deleteLineaPreparada(self, **kw):
         response = request.jsonrequest
         try:
@@ -317,6 +317,8 @@ class AppPedidos(http.Controller):
                 "error":e
             }
             return data
+
+    #Pedidos
 
 # class AppPedidos(http.Controller):
 #     @http.route('/app_pedidos/app_pedidos', auth='public')
