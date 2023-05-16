@@ -137,6 +137,9 @@ class AppPedidos(http.Controller):
         else:
             domain=[]
         pedidodata = http.request.env["app_pedidos.pedido"].sudo().search_read(domain,["usuario","cliente","unidad","fechaEntrega","fechaCreacion","lineas","estado","active","muelle","customRecName"])
+        for pedido in pedidodata:
+            pedido["fechaEntrega"] = str(pedido["fechaEntrega"])
+            pedido["fechaCreacion"] = str(pedido["fechaCreacion"])
         data = {"status":200, "data": pedidodata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 

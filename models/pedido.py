@@ -12,7 +12,7 @@ class PedidoModel(models.Model):
     unidad = fields.Selection(string="Unidad:",selection=[('C','Cajas'),('P','Palet'),('B','Paquete')], default="P")
     fechaEntrega = fields.Date(string="Fecha entrega:", help="Fecha en la que se tiene que entregar el pedido", required=True)
     fechaCreacion = fields.Date(string="Fecha de creación:", help="Fecha en la que se creó el pedido",default=lambda self: datetime.datetime.now())
-    lineas = fields.One2many(comodel_name="app_pedidos.linea_pedido",inverse_name="pedido",string="Lineas:")
+    lineas = fields.One2many(comodel_name="app_pedidos.linea_pedido",inverse_name="pedido",string="Lineas:",required=True)
     estado = fields.Selection(string="Estado:",selection=[('P','En producción'),('C','Completado'),('E','Enviado')], default="P")
     active = fields.Boolean(string="Esta activo?",default=True)
     muelle = fields.Selection(string="Muelle:",selection=[('P','Puerta principal'),('T','Puerta trasera')], default="P")
