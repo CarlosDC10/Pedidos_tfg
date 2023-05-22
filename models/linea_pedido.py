@@ -13,12 +13,14 @@ class LineaPedidoModel(models.Model):
     completada = fields.Boolean(string="Completada?", default=False)
     color = fields.Integer("color", compute="setColor",store=True)
     unidadPedido = fields.Char(string="Unidad", compute="setUnidad")
+    cantidadActual = fields.Integer(string="Cantidad preparada hasta el momento")
 
     @api.onchange('lineasPreparadas')
     def lineaAcabada(self):
         acum = 0
         for linea in self.lineasPreparadas:
             acum = acum + linea.cantidad
+            self.cantidadActual = acum
         if acum == self.cantidad:
             self.completada = True
         else:

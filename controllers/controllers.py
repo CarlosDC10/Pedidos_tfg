@@ -202,7 +202,7 @@ class AppPedidos(http.Controller):
             domain=[("id","=",LinPedid)]
         else:
             domain=[]
-        lineaPeddata = http.request.env["app_pedidos.linea_pedido"].sudo().search_read(domain,["pedido","tipoPaquete","cantidad","lineasPreparadas","completada"])
+        lineaPeddata = http.request.env["app_pedidos.linea_pedido"].sudo().search_read(domain,["pedido","tipoPaquete","cantidad","lineasPreparadas","completada","cantidadActual"])
         data = {"status":200, "data": lineaPeddata}
         return http.Response(json.dumps(data).encode("utf8"),mimetype ="application/json")
 

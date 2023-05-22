@@ -8,6 +8,7 @@
                     <sheet>
                         <group>
                             <field name="cantidad" widget="numeric_step" options="{'step': 1, 'min': 0}" /> <field name="unidadPedido" readonly="True"/>
+                            <field name="cantidadActual"/>
                             <field name="tipoPaquete" />
                             <field name="completada"/>
                             <field name="lineasPreparadas">
