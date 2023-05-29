@@ -23,6 +23,7 @@ class LineaPedidoModel(models.Model):
             self.cantidadActual = acum
         if acum == self.cantidad:
             self.completada = True
+            self.pedido.estado = 'C'
         else:
             if acum > self.cantidad:
                 raise ValidationError("Hay un error en las lineas de pedido")
@@ -31,14 +32,12 @@ class LineaPedidoModel(models.Model):
 
     @api.depends('pedido')
     def setUnidad(self):
-        for rec in self:
-            for rec in self: 
-                if rec.pedido.unidad == 'P':
-                    rec.unidadPedido = "Palet(s)"
-                elif rec.pedido.unidad == 'C':
-                    rec.unidadPedido = "Caja(s)"
-                elif rec.pedido.unidad == 'B':
-                    rec.unidadPedido = "Paquete(s)"
+        if self.pedido.unidad == 'P':
+            self.unidadPedido = "Palet(s)"
+        elif self.pedido.unidad == 'C':
+            self.unidadPedido = "Caja(s)"
+        elif self.pedido.unidad == 'B':
+            self.unidadPedido = "Paquete(s)"
 
     @api.depends("completada")
     def setColor(self):

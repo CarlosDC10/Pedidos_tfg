@@ -130,7 +130,7 @@ class AppPedidos(http.Controller):
             return data
 
     #Pedidos
-    @http.route(['/app_pedidos/getPedido','/app_pedidos/getPedido<int:pedidoid>'], auth='public', type="http")
+    @http.route(['/app_pedidos/getPedido','/app_pedidos/getPedido/<int:pedidoid>'], auth='public', type="http")
     def getPedido(self,pedidoid=None, **kw):
         if pedidoid:
             domain=[("id","=",pedidoid)]
@@ -196,7 +196,7 @@ class AppPedidos(http.Controller):
             return data
     
     #Linea Pedido
-    @http.route(['/app_pedidos/getLineaPedido','/app_pedidos/getLineaPedido<int:LinPedid>'], auth='public', type="http")
+    @http.route(['/app_pedidos/getLineaPedido','/app_pedidos/getLineaPedido/<int:LinPedid>'], auth='public', type="http")
     def getLineaPedido(self,LinPedid=None, **kw):
         if LinPedid:
             domain=[("id","=",LinPedid)]

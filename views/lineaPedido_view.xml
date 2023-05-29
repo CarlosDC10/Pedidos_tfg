@@ -33,7 +33,6 @@
                     <field name="pedido"/>
                     <field name="tipoPaquete" />
                     <field name="cantidad" />
-                    <field name="completada"/>
                     <field name="unidadPedido"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -45,7 +44,6 @@
                                         <strong>
                                             <div class="oe_kanban_record_title"> <field  name="cantidad"/> <field name="unidadPedido"/> - <field name="tipoPaquete" /></div>
                                         </strong>
-                                        <div><field name = "completada" invisible="True"/></div> 
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +69,6 @@
             <field name="name">Lista lineas pedido</field>
             <field name="res_model">app_pedidos.linea_pedido</field>
             <field name="view_mode">kanban,tree,form</field>
-            <field name="domain">[('completada', '=', False)]</field>
         </record>
     </data>
 </odoo>
