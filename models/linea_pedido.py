@@ -12,8 +12,9 @@ class LineaPedidoModel(models.Model):
     lineasPreparadas = fields.One2many(comodel_name="app_pedidos.linea_preparada",inverse_name="lineaPedido",string="Lineas preparadas:")
     completada = fields.Boolean(string="Completada?", default=False)
     color = fields.Integer("color", compute="setColor",store=True)
-    unidadPedido = fields.Char(string="Unidad", compute="setUnidad")
+    unidadPedido = fields.Char(string="Unidad", compute="setUnidad", store=True)
     cantidadActual = fields.Integer(string="Cantidad preparada hasta el momento")
+    active = fields.Boolean(string="Activa", default=True)
 
     @api.onchange('lineasPreparadas')
     def lineaAcabada(self):
@@ -23,7 +24,6 @@ class LineaPedidoModel(models.Model):
             self.cantidadActual = acum
         if acum == self.cantidad:
             self.completada = True
-            self.pedido.estado = 'C'
         else:
             if acum > self.cantidad:
                 raise ValidationError("Hay un error en las lineas de pedido")

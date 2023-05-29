@@ -12,7 +12,7 @@ class LineaPreparadaModel(models.Model):
     cantidad = fields.Integer(string="Cantidad: ",help="Cuantas unidades del tipo de paquete", default = 1)
     tipoPaquete = fields.Many2one(comodel_name="app_pedidos.tipo_paquete",string="Tipo paquete:",compute = "setTipoPaquete", store = True)
     completada = fields.Boolean(string="Completada?", default=False)
-    unidadPedido = fields.Char(string="Unidad", compute = "setUnidad")
+    unidadPedido = fields.Char(string="Unidad", compute="setUnidad")
 
     @api.depends('lineaPedido')
     def setTipoPaquete(self):
@@ -22,6 +22,8 @@ class LineaPreparadaModel(models.Model):
     @api.depends('lineaPedido')
     def setUnidad(self):
         for rec in self: 
+            if rec.lineaPedido == False: 
+                rec.sudo().unlink()
             if rec.lineaPedido.pedido.unidad == 'P':
                 rec.unidadPedido = "Palet(s)"
             elif rec.lineaPedido.pedido.unidad == 'C':

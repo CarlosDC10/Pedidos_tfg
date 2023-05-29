@@ -17,7 +17,6 @@ class PedidoModel(models.Model):
     active = fields.Boolean(string="Esta activo?",default=True)
     muelle = fields.Selection(string="Muelle:",selection=[('P','Puerta principal'),('T','Puerta trasera')], default="P")
     customRecName = fields.Char(string="(Invisible) recname custom",compute = "setRecName", store = True)
-    hoy = fields.Date(string="Dia de hoy:",default=lambda self: datetime.datetime.now())
 
     @api.onchange("estado")
     def controlEstado(self):
@@ -27,10 +26,18 @@ class PedidoModel(models.Model):
                     raise ValidationError("Aun hay lineas por terminar")
             self.active = True
 
-    @api.onchange("hoy")
-    def cambiarActive(self):
-        if self.fechaEntrega < self.hoy:
-            self.active = False
+    @api.depends("lineas")
+    def cambioAutomatico(self):
+        cambio = False
+        for rec in self:
+            for linea in rec.lineas:
+                if linea.completada == True:
+                    cambio = True
+                else:
+                    cambio = False
+                    break
+            if cambio:
+                rec.estado = 'C'
 
     @api.depends('cliente', 'fechaEntrega')
     def setRecName(self):
@@ -38,9 +45,17 @@ class PedidoModel(models.Model):
             rec.customRecName = str(rec.cliente.nombre) +" ("+str(rec.fechaEntrega)+")"
 
     def cambiarEstado(self):
+        cambio = False
         if self.estado == 'P':
-            self.estado = 'C'
-            self.controlEstado()
+            for linea in self.lineas:
+                if linea.completada == True:
+                    cambio = True
+                else:
+                    cambio = False
+                    break
+            if cambio:
+                self.estado = 'C'
+                self.controlEstado()
         elif self.estado == 'C':
             self.estado = 'E'
             self.controlEstado()
