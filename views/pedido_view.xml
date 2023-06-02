@@ -45,6 +45,14 @@
                 </calendar>
             </field>
         </record>
+        <record model="ir.ui.view" id="app_pedidos.pedido_model_pivot">
+            <field name="name">Pivot Pedidos</field>
+            <field name="model">app_pedidos.pedido</field>
+            <field name="arch" type="xml">
+                <pivot string="Info Pedidos">
+                </pivot>
+            </field>
+       </record>
         <record model="ir.ui.view" id="app_pedidos.pedido_model_graph">
             <field name="name">Grafico pedidos</field>
             <field name="model">app_pedidos.pedido</field>
@@ -70,7 +78,7 @@
         <record model="ir.actions.act_window" id="app_pedidos.action_window_pedido_list">
             <field name="name">Lista pedidos</field>
             <field name="res_model">app_pedidos.pedido</field>
-            <field name="view_mode">calendar,graph,tree,form</field>
+            <field name="view_mode">calendar,graph,pivot,tree,form</field>
         </record>
     </data>
 </odoo>
