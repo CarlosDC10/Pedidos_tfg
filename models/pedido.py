@@ -24,20 +24,6 @@ class PedidoModel(models.Model):
             for linea in self.lineas:
                 if linea.completada == False:
                     raise ValidationError("Aun hay lineas por terminar")
-            self.active = True
-
-    @api.depends("lineas")
-    def cambioAutomatico(self):
-        cambio = False
-        for rec in self:
-            for linea in rec.lineas:
-                if linea.completada == True:
-                    cambio = True
-                else:
-                    cambio = False
-                    break
-            if cambio:
-                rec.estado = 'C'
 
     @api.depends('cliente', 'fechaEntrega')
     def setRecName(self):
@@ -58,4 +44,7 @@ class PedidoModel(models.Model):
                 self.controlEstado()
         elif self.estado == 'C':
             self.estado = 'E'
+            for linea in self.lineas:
+                linea.finalizado = True
+            self.active = False
             self.controlEstado()

@@ -19,5 +19,5 @@ class ClienteModel(models.Model):
             if rec.correo == False: rec.correo = ""
             if not re.match(r"^\S+@\S+\.\S+$", rec.correo):
                 if rec.telefono == False: rec.telefono = ""
-                if not re.match("^\\+?[1-9][0-9]{9}$",rec.telefono):
+                if not re.match("^\\+?[1-9][0-9]{8,9}$",rec.telefono):
                     raise ValidationError("Introduce un telefono o un correo valido")

@@ -7,12 +7,12 @@ class LineaPreparadaModel(models.Model):
     _description = 'Modelo de las lineas preparadas de un pedido'
     _rec_name = "lineaPedido"
 
-    lineaPedido = fields.Many2one(comodel_name="app_pedidos.linea_pedido",string="Linea pedido:")
+    lineaPedido = fields.Many2one(comodel_name="app_pedidos.linea_pedido",string="Linea pedido:",required=True)
     lote = fields.Integer(string="Lote: ",help="Cuantas unidades del mismo lote", default = int(str(date.today()-date(date.today().year,1,1))[0:3])+1)
     cantidad = fields.Integer(string="Cantidad: ",help="Cuantas unidades del tipo de paquete", default = 1)
     tipoPaquete = fields.Many2one(comodel_name="app_pedidos.tipo_paquete",string="Tipo paquete:",compute = "setTipoPaquete", store = True)
     completada = fields.Boolean(string="Completada?", default=False)
-    unidadPedido = fields.Char(string="Unidad", compute="setUnidad")
+    unidadPedido = fields.Char(string="Unidad", compute="setUnidad", store=True)
 
     @api.depends('lineaPedido')
     def setTipoPaquete(self):
@@ -22,8 +22,6 @@ class LineaPreparadaModel(models.Model):
     @api.depends('lineaPedido')
     def setUnidad(self):
         for rec in self: 
-            if rec.lineaPedido == False: 
-                rec.sudo().unlink()
             if rec.lineaPedido.pedido.unidad == 'P':
                 rec.unidadPedido = "Palet(s)"
             elif rec.lineaPedido.pedido.unidad == 'C':
