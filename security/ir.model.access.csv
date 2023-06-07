@@ -1,24 +1,19 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_app_pedidos_cliente,app_pedidos.cliente,model_app_pedidos_cliente,base.group_user,1,1,1,1
-access_app_pedidos_pedido,app_pedidos.pedido,model_app_pedidos_pedido,base.group_user,1,1,1,1
-access_app_pedidos_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,base.group_user,1,1,1,1
-access_app_pedidos_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,base.group_user,1,1,1,1
-access_app_pedidos_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,base.group_user,1,1,1,1
 
-access_empleado_cliente,app_pedidos.cliente,model_app_pedidos_cliente,base.group_user,1,0,0,0
-access_empleado_pedido,app_pedidos.pedido,model_app_pedidos_pedido,base.group_user,1,0,0,0
-access_empleado_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,base.group_user,1,0,0,0
-access_empleado_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,base.group_user,1,1,1,1
-access_empleado_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,base.group_user,1,0,0,0
+access_empleado_cliente,app_pedidos.cliente,model_app_pedidos_cliente,pedidos_grupo_empleado,1,0,0,0
+access_empleado_pedido,app_pedidos.pedido,model_app_pedidos_pedido,pedidos_grupo_empleado,1,0,0,0
+access_empleado_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,pedidos_grupo_empleado,1,1,0,0
+access_empleado_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,pedidos_grupo_empleado,1,1,1,1
+access_empleado_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,pedidos_grupo_empleado,1,0,0,0
 
-access_encargado_cliente,app_pedidos.cliente,model_app_pedidos_cliente,base.group_user,1,0,1,0
-access_encargado_pedido,app_pedidos.pedido,model_app_pedidos_pedido,base.group_user,1,1,1,0
-access_encargado_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,base.group_user,1,1,1,1
-access_encargado_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,base.group_user,1,1,1,1
-access_encargado_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,base.group_user,1,0,0,0
+access_encargado_cliente,app_pedidos.cliente,model_app_pedidos_cliente,pedidos_grupo_encargado,1,0,1,0
+access_encargado_pedido,app_pedidos.pedido,model_app_pedidos_pedido,pedidos_grupo_encargado,1,1,1,0
+access_encargado_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,pedidos_grupo_encargado,1,1,1,1
+access_encargado_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,pedidos_grupo_encargado,1,1,1,1
+access_encargado_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,pedidos_grupo_encargado,1,0,0,0
 
-access_administrador_cliente,app_pedidos.cliente,model_app_pedidos_cliente,base.group_user,1,1,1,1
-access_administrador_pedido,app_pedidos.pedido,model_app_pedidos_pedido,base.group_user,1,1,1,1
-access_administrador_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,base.group_user,1,1,1,1
-access_administrador_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,base.group_user,1,1,1,1
-access_administrador_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,base.group_user,1,1,1,1
+access_administrador_cliente,app_pedidos.cliente,model_app_pedidos_cliente,pedidos_grupo_admin,1,1,1,1
+access_administrador_pedido,app_pedidos.pedido,model_app_pedidos_pedido,pedidos_grupo_admin,1,1,1,1
+access_administrador_linea_pedido,app_pedidos.linea_pedido,model_app_pedidos_linea_pedido,pedidos_grupo_admin,1,1,1,1
+access_administrador_linea_preparada,app_pedidos.linea_preparada,model_app_pedidos_linea_preparada,pedidos_grupo_admin,1,1,1,1
+access_administrador_tipo_paquete,app_pedidos.tipo_paquete,model_app_pedidos_tipo_paquete,pedidos_grupo_admin,1,1,1,1

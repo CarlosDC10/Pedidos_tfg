@@ -10,7 +10,7 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="usuario" />
+                            <field name="usuario" readonly="True"/>
                             <field name="cliente" />
                             <field name="fechaCreacion" />
                         </group>

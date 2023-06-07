@@ -35,6 +35,7 @@ class LineaPreparadaModel(models.Model):
         for lineaPrep in self.lineaPedido.lineasPreparadas:
             acum += lineaPrep.cantidad
         if acum > self.lineaPedido.cantidad:
+            self.cantidad = self.cantidad-1
             raise ValidationError("Hay mas cantiddad de la necesaria. Compruebe el inventario")
         elif acum == self.lineaPedido.cantidad:
             self.completada = True
